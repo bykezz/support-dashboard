@@ -7,7 +7,7 @@ const inquiriesSlice = createSlice({
     inquiries: inquiriesData,
     filteredInquiries: inquiriesData,
     currentPage: 1,
-    inquiriesPerPage: 10, // Default number of inquiries per page
+    inquiriesPerPage: 10,
     statusFilter: "All",
     selectedInquiry: null,
     searchTerm: "",
@@ -48,7 +48,7 @@ const inquiriesSlice = createSlice({
       state.selectedInquiry = action.payload;
     },
     setEntriesPerPage: (state, action) => {
-      state.inquiriesPerPage = parseInt(action.payload, 10); // Set entries per page
+      state.inquiriesPerPage = parseInt(action.payload, 10);
       state.currentPage = 1;
     },
   },
