@@ -6,9 +6,6 @@
   float: right;
   margin-bottom: 10px;
   position: relative;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .filter-select {
@@ -20,6 +17,9 @@
   font-size: 14px;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   transition: background-color 0.3s ease;
 }
 
