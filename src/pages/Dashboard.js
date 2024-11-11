@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import InquiryList from "./InquiryList";
-import InquiryFilter from "./InquiryFilter";
+import InquiryList from "../components/InquiryList";
+import InquiryFilter from "../components/InquiryFilter";
 import { setEntriesPerPage } from "../store";
 import { TiArrowSortedDown } from "react-icons/ti";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 import "./Dashboard.css";
 
 const Dashboard = () => {

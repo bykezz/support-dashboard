@@ -23,7 +23,7 @@ const InquiryDetails = () => {
   };
 
   const handleOutsideClick = () => {
-    navigate(-1);
+    navigate("/");
   };
 
   if (!inquiry) return <div>Please select an inquiry to view details.</div>;
