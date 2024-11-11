@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPage, setSelectedInquiry } from "../store";
 import { FiEdit } from "react-icons/fi";
 import "./InquiryList.css";
+import { useNavigate } from "react-router-dom";
 
 const InquiryList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { filteredInquiries, currentPage, inquiriesPerPage } = useSelector(
     (state) => state.inquiries
   );
@@ -32,7 +35,9 @@ const InquiryList = () => {
   };
 
   const handleEditClick = (inquiry) => {
-    dispatch(setSelectedInquiry(inquiry.id));
+    dispatch(setSelectedInquiry(inquiry));
+    localStorage.setItem("selectedInquiry", JSON.stringify(inquiry));
+    navigate(`/inquiry-details/`);
   };
 
   return (

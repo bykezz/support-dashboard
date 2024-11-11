@@ -1,6 +1,10 @@
+.inquiry-container {
+  padding: 20px;
+}
 .inquiry-details {
   background-color: #fff;
   padding: 20px;
+  margin: auto;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: "Montserrat", sans-serif;
