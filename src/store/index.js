@@ -18,13 +18,9 @@ const inquiriesSlice = createSlice({
       state.filteredInquiries = state.inquiries.filter((inquiry) => {
         const matchesStatus =
           action.payload === "All" || inquiry.status === action.payload;
-        const matchesSearch =
-          inquiry.customerName
-            .toLowerCase()
-            .includes(state.searchTerm.toLowerCase()) ||
-          inquiry.subject
-            .toLowerCase()
-            .includes(state.searchTerm.toLowerCase());
+        const matchesSearch = inquiry.customerName
+          .toLowerCase()
+          .includes(state.searchTerm.toLowerCase());
         return matchesStatus && matchesSearch;
       });
       state.currentPage = 1;
@@ -32,12 +28,9 @@ const inquiriesSlice = createSlice({
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
       state.filteredInquiries = state.inquiries.filter((inquiry) => {
-        return (
-          inquiry.customerName
-            .toLowerCase()
-            .includes(action.payload.toLowerCase()) ||
-          inquiry.subject.toLowerCase().includes(action.payload.toLowerCase())
-        );
+        return inquiry.customerName
+          .toLowerCase()
+          .includes(action.payload.toLowerCase());
       });
       state.currentPage = 1;
     },
