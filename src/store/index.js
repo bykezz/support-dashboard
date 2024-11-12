@@ -6,8 +6,9 @@ const inquiriesSlice = createSlice({
   initialState: {
     inquiries: inquiriesData,
     filteredInquiries: inquiriesData,
-    currentPage: 1,
-    inquiriesPerPage: 10,
+    currentPage: parseInt(localStorage.getItem("currentPage"), 10) || 1,
+    inquiriesPerPage:
+      parseInt(localStorage.getItem("inquiriesPerPage"), 10) || 10,
     statusFilter: "All",
     selectedInquiry: null,
     searchTerm: "",
@@ -36,13 +37,16 @@ const inquiriesSlice = createSlice({
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
+      localStorage.setItem("currentPage", action.payload);
     },
     setSelectedInquiry: (state, action) => {
       state.selectedInquiry = action.payload;
     },
     setEntriesPerPage: (state, action) => {
       state.inquiriesPerPage = parseInt(action.payload, 10);
+      localStorage.setItem("inquiriesPerPage", action.payload);
       state.currentPage = 1;
+      localStorage.setItem("currentPage", 1);
     },
   },
 });

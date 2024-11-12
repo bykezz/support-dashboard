@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InquiryList from "../components/InquiryList";
 import InquiryFilter from "../components/InquiryFilter";
 import { setEntriesPerPage } from "../store";
@@ -8,7 +8,9 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-
+  const inquiriesPerPage = useSelector(
+    (state) => state.inquiries.inquiriesPerPage
+  );
   const handleEntriesChange = (e) => {
     dispatch(setEntriesPerPage(e.target.value));
   };
@@ -21,8 +23,8 @@ const Dashboard = () => {
           <div className="entries-dropdown-wrapper">
             <select
               onChange={handleEntriesChange}
+              value={inquiriesPerPage}
               className="entries-dropdown"
-              defaultValue="10"
             >
               <option value="5">5</option>
               <option value="10">10</option>
