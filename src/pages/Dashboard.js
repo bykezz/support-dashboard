@@ -1,18 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage, setEntriesPerPage } from "../store";
+import { useSearchParams } from "react-router-dom";
 import InquiryList from "../components/InquiryList";
 import InquiryFilter from "../components/InquiryFilter";
-import { setEntriesPerPage } from "../store";
-import { TiArrowSortedDown } from "react-icons/ti";
 import SearchBar from "../components/SearchBar";
+import { TiArrowSortedDown } from "react-icons/ti";
 import "./Dashboard.css";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const inquiriesPerPage = useSelector(
-    (state) => state.inquiries.inquiriesPerPage
-  );
+  const { inquiriesPerPage } = useSelector((state) => state.inquiries);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const entriesPerPageParam = searchParams.get("entriesPerPage") || "10";
+  const currentPageParam = searchParams.get("currentPage") || "1";
+
+  useEffect(() => {
+    dispatch(setEntriesPerPage(entriesPerPageParam));
+    dispatch(setCurrentPage(Number(currentPageParam)));
+  }, [entriesPerPageParam, currentPageParam, dispatch]);
+
   const handleEntriesChange = (e) => {
-    dispatch(setEntriesPerPage(e.target.value));
+    const newEntriesPerPage = e.target.value;
+    dispatch(setEntriesPerPage(newEntriesPerPage));
+    dispatch(setCurrentPage(1));
+    setSearchParams({
+      entriesPerPage: newEntriesPerPage,
+      currentPage: "1",
+    });
   };
 
   return (
@@ -23,8 +39,8 @@ const Dashboard = () => {
           <div className="entries-dropdown-wrapper">
             <select
               onChange={handleEntriesChange}
-              value={inquiriesPerPage}
               className="entries-dropdown"
+              value={inquiriesPerPage}
             >
               <option value="5">5</option>
               <option value="10">10</option>
