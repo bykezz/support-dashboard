@@ -70,4 +70,8 @@
   .top-bar div p {
     font-size: 12px;
   }
+
+  .dropdown-icon {
+    right: 15px;
+  }
 }
