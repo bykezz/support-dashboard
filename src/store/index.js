@@ -18,10 +18,7 @@ const inquiriesSlice = createSlice({
       state.filteredInquiries = state.inquiries.filter((inquiry) => {
         const matchesStatus =
           action.payload === "All" || inquiry.status === action.payload;
-        const matchesSearch = inquiry.customerName
-          .toLowerCase()
-          .includes(state.searchTerm.toLowerCase());
-        return matchesStatus && matchesSearch;
+        return matchesStatus;
       });
       state.currentPage = 1;
     },
